@@ -1,0 +1,17 @@
+<h1>Flickr Photo Viewer</h1>
+
+<% flash.each do |name, msg| %>
+  <%= msg %>
+<% end %>
+
+<%= form_with(method: :get) do |f| %>
+  <%= f.text_field(:user_id, autofocus: true) %>
+  <%= f.submit %>
+<% end %>
+
+<% unless @photos.blank? %>
+  <% @photos.each do |pic| %>
+    <%# https://live.staticflickr.com/{server-id}/{id}_{secret}.jpg %>
+    <%= image_tag("https://live.staticflickr.com/#{pic.server}/#{pic.id}_#{pic.secret}.jpg") %><br>
+  <% end %>
+<% end %>
